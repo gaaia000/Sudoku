@@ -2,8 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 
-public class Sudoku_Cards{
+import components.Login;
+import main.Builder;
+
+public class Sudoku_Cards {
 
     JFrame frame = new JFrame("Try yourself");
 
@@ -14,24 +19,35 @@ public class Sudoku_Cards{
 
     JPanel settings = new JPanel();
     JPanel play = new JPanel();
-    CardLayout cl = new CardLayout();
-    GridLayout gl1 = new GridLayout(3,1);
-    GridLayout gl2 = new GridLayout(3,1);
+    CardLayout cl = Builder.getCardLayout();
+    GridLayout gl1 = new GridLayout(3, 1);
+    GridLayout gl2 = new GridLayout(3, 1);
+
+    public JLabel usernameLabel1;
+    public JTextField userText1;
+    public JLabel passwordLabel1;
+    public JPasswordField passwordText1;
+    public JLabel error;
 
 
-    public Sudoku_Cards(){
+    public Sudoku_Cards() {
+
+        //Login loginComponent = new Login();
+        //login = loginComponent.getComponent();
 
         //ALL BUTTONS
-        JButton buttonSignup = new JButton("Sign up");
-        JButton buttonLogin = new JButton("Login");
+        JButton buttonSignup = Builder.createButton("Sign up");
+        JButton buttonLogin = Builder.createButton("Login");
 
-        JButton signupPlay = new JButton("Confirm");
-        JButton loginPlay = new JButton("Confirm");
+        JButton signupPlay = Builder.createButton("Confirm");
+        JButton loginPlay = Builder.createButton("Confirm");
 
-        JButton goBackSignup = new JButton("Back");
-        JButton goBackLogin = new JButton("Back");
-        JButton goBackSettings = new JButton("Back");
-        JButton goBackPlay = new JButton("Back");
+        JButton goBackSignUp = Builder.createButton("Back");
+        JButton goBackLogin = Builder.createButton("Back");
+        JButton goBackSettings = Builder.createButton("Back");
+        JButton goBackPlay = Builder.createButton("Back");
+
+        error = new JLabel("");
 
         //LAYOUTS
         panelCont.setLayout(cl);
@@ -45,7 +61,7 @@ public class Sudoku_Cards{
         //MENU - USER
         panelUser.setBackground(Color.PINK);
 
-        GridLayout menu = new GridLayout(3,1);
+        GridLayout menu = new GridLayout(3, 1);
         panelUser.setLayout(menu);
         menu.setVgap(20);
         menu.setHgap(20);
@@ -56,7 +72,7 @@ public class Sudoku_Cards{
         JPanel menuPanel = new JPanel();
         menuPanel.setBackground(Color.PINK);
 
-        GridLayout mP = new GridLayout(1,2);
+        GridLayout mP = new GridLayout(1, 2);
         menuPanel.setLayout(mP);
 
         JPanel smallPanel1 = new JPanel();
@@ -82,19 +98,6 @@ public class Sudoku_Cards{
         buttonLogin.setVisible(true);
         buttonSignup.setVisible(true);
 
-        //buttons customization
-        buttonSignup.setPreferredSize(new Dimension(150,50));
-        buttonSignup.setBackground(Color.BLACK);
-        buttonSignup.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
-        buttonSignup.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-        buttonSignup.setForeground(Color.WHITE);
-
-        buttonLogin.setPreferredSize(new Dimension(150,50));
-        buttonLogin.setBackground(Color.BLACK);
-        buttonLogin.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
-        buttonLogin.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-        buttonLogin.setForeground(Color.WHITE);
-
         //SIGNUP
         signUp.setBackground(Color.PINK);
 
@@ -112,24 +115,24 @@ public class Sudoku_Cards{
         box1.add(Box.createVerticalGlue());
 
         //-> user signup
-        JLabel usernameLabel1 = new JLabel("New username: ");
-        usernameLabel1.setBounds(10,20,80,25);
+        usernameLabel1 = new JLabel("New username: ");
+        usernameLabel1.setBounds(10, 20, 80, 25);
         usernameLabel1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
         usernameLabel1.setForeground(Color.WHITE);
 
-        JTextField userText1 = new JTextField(20);
-        userText1.setBounds(100,20,165,25);
+        userText1 = new JTextField(20);
+        userText1.setBounds(100, 20, 165, 25);
         userText1.setBackground(Color.WHITE);
         userText1.setForeground(Color.BLACK);
         userText1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 
-        JLabel passwordLabel1 = new JLabel("New password: ");
-        passwordLabel1.setBounds(10,50,80,25);
+        passwordLabel1 = new JLabel("New password: ");
+        passwordLabel1.setBounds(10, 50, 80, 25);
         passwordLabel1.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
         passwordLabel1.setForeground(Color.WHITE);
 
-        JPasswordField passwordText1 = new JPasswordField(20);
-        passwordText1.setBounds(100,20,165,25);
+        passwordText1 = new JPasswordField(20);
+        passwordText1.setBounds(100, 20, 165, 25);
         passwordText1.setBackground(Color.WHITE);
         passwordText1.setForeground(Color.BLACK);
         passwordText1.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -138,7 +141,7 @@ public class Sudoku_Cards{
         JPanel userBox = new JPanel();
         userBox.setBackground(Color.PINK);
 
-        GridLayout user = new GridLayout(2,2);
+        GridLayout user = new GridLayout(2, 2);
         userBox.setLayout(user);
 
         //-> four smaller boxes for each of the components
@@ -189,7 +192,7 @@ public class Sudoku_Cards{
         JPanel buttonBox = new JPanel();
         buttonBox.setBackground(Color.PINK);
 
-        GridLayout buttons = new GridLayout(1,2);
+        GridLayout buttons = new GridLayout(1, 2);
         buttonBox.setLayout(buttons);
 
         //two smaller boxes for each button
@@ -201,23 +204,11 @@ public class Sudoku_Cards{
         smallBox1_2.setLayout(new GridBagLayout());
         smallBox1_2.setBackground(Color.PINK);
 
-        //buttons customization
-        signupPlay.setPreferredSize(new Dimension(150,50));
-        signupPlay.setBackground(Color.BLACK);
-        signupPlay.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
-        signupPlay.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-        signupPlay.setForeground(Color.WHITE);
-
-        goBackSignup.setPreferredSize(new Dimension(150,50));
-        goBackSignup.setBackground(Color.BLACK);
-        goBackSignup.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
-        goBackSignup.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-        goBackSignup.setForeground(Color.WHITE);
 
         //signup -> ADDING
         //(box.add(SUDOKU); ) ->zgoraj, ker drugače ne dela :)
         smallBox1_1.add(signupPlay);
-        smallBox1_2.add(goBackSignup);
+        smallBox1_2.add(goBackSignUp);
         buttonBox.add(smallBox1_1);
         buttonBox.add(smallBox1_2);
 
@@ -250,23 +241,23 @@ public class Sudoku_Cards{
 
         //->user login
         JLabel usernameLabel2 = new JLabel("Username: ");
-        usernameLabel2.setBounds(10,20,80,25);
+        usernameLabel2.setBounds(10, 20, 80, 25);
         usernameLabel2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
         usernameLabel2.setForeground(Color.WHITE);
 
         JTextField userText2 = new JTextField(20);
-        userText2.setBounds(100,20,165,25);
+        userText2.setBounds(100, 20, 165, 25);
         userText2.setBackground(Color.WHITE);
         userText2.setForeground(Color.BLACK);
         userText2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
 
         JLabel passwordLabel2 = new JLabel("Password: ");
-        passwordLabel2.setBounds(10,50,80,25);
+        passwordLabel2.setBounds(10, 50, 80, 25);
         passwordLabel2.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 18));
         passwordLabel2.setForeground(Color.WHITE);
 
         JPasswordField passwordText2 = new JPasswordField(20);
-        passwordText2.setBounds(100,20,165,25);
+        passwordText2.setBounds(100, 20, 165, 25);
         passwordText2.setBackground(Color.WHITE);
         passwordText2.setForeground(Color.BLACK);
         passwordText2.setBorder(BorderFactory.createLineBorder(Color.BLACK, 3));
@@ -275,7 +266,7 @@ public class Sudoku_Cards{
         JPanel userLoginBox = new JPanel();
         userLoginBox.setBackground(Color.PINK);
 
-        GridLayout loginGrid = new GridLayout(2,2);
+        GridLayout loginGrid = new GridLayout(2, 2);
         userLoginBox.setLayout(loginGrid);
 
         //-> four smaller boxes for each of the components
@@ -326,7 +317,7 @@ public class Sudoku_Cards{
         JPanel buttonLoginBox = new JPanel();
         buttonLoginBox.setBackground(Color.PINK);
 
-        GridLayout bull = new GridLayout(1,2);
+        GridLayout bull = new GridLayout(1, 2);
         buttonLoginBox.setLayout(bull);
 
         //two smaller boxes for each button
@@ -338,19 +329,6 @@ public class Sudoku_Cards{
         smallBox2_2.setLayout(new GridBagLayout());
         smallBox2_2.setBackground(Color.PINK);
 
-        //buttons customization
-        loginPlay.setPreferredSize(new Dimension(150,50));
-        loginPlay.setBackground(Color.BLACK);
-        loginPlay.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
-        loginPlay.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-        loginPlay.setForeground(Color.WHITE);
-
-        goBackLogin.setPreferredSize(new Dimension(150,50));
-        goBackLogin.setBackground(Color.BLACK);
-        goBackLogin.setBorder(BorderFactory.createLineBorder(Color.WHITE, 3));
-        goBackLogin.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
-        goBackLogin.setForeground(Color.WHITE);
-
         //login -> ADDING
         smallBox2_1.add(loginPlay);
         smallBox2_2.add(goBackLogin);
@@ -360,6 +338,9 @@ public class Sudoku_Cards{
         login.add(box2);
         login.add(userLoginBox);
         login.add(buttonLoginBox);
+
+        // Error text
+        //login.add(error);
 
         box2.setVisible(true);
         userLoginBox.setVisible(true);
@@ -371,6 +352,7 @@ public class Sudoku_Cards{
         //- -> settings
         settings.setBackground(Color.PINK);
         settings.add(goBackSettings);
+
         //- - -> play
         play.setBackground(Color.BLACK);
         play.add(goBackPlay);
@@ -388,15 +370,19 @@ public class Sudoku_Cards{
         //ACTIONS
         buttonSignup.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { cl.show(panelCont, "2");
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelCont, "2");
             }
         });
         buttonLogin.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) { cl.show(panelCont, "3");
+            public void actionPerformed(ActionEvent e) {
+                cl.show(panelCont, "3");
             }
         });
-        goBackSignup.addActionListener(new ActionListener() {
+
+        //GO BACK
+        goBackSignUp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelCont, "1");
@@ -406,12 +392,6 @@ public class Sudoku_Cards{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cl.show(panelCont, "1");
-            }
-        });
-        loginPlay.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cl.show(panelCont, "4");
             }
         });
         goBackSettings.addActionListener(new ActionListener() {
@@ -428,11 +408,62 @@ public class Sudoku_Cards{
         });
 
 
+        signupPlay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String username = userText1.getText();
+                String password = passwordText1.getText();
+
+                if (!username.isEmpty() && !password.isEmpty()) {
+                    try {
+                        Sudoku_Files.writeInFile(
+                                username,
+                                password
+                        );
+                        cl.show(panelCont, "3");
+
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+
+            }
+        });
+
+        //TODO popravi error, zbriši text
+        loginPlay.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String username = userText2.getText();
+                String password = passwordText2.getText();
+
+                if (!username.isEmpty() && !password.isEmpty()) {
+                    try {
+                        if (Sudoku_Files.login(username, password)) {
+                            cl.show(panelCont, "4");
+                        }
+                        else{
+                            System.out.println("User not found!");
+                            //error.setText("User not found!");
+                            //error.setVisible(true);
+                        }
+                    } catch (FileNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+
+        });
 
         //FRAME
-        this.frame.setPreferredSize(new Dimension(600,600));
+        this.frame.setPreferredSize(new
+
+                Dimension(600, 600));
         frame.setResizable(false);
-        frame.getContentPane().setBackground( Color.PINK);
+        frame.getContentPane().
+
+                setBackground(Color.PINK);
         frame.add(panelCont);
         panelCont.setVisible(true);
         panelUser.setVisible(true);

@@ -2,35 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class Sudoku_solver {
+
+public class Sudoku_Board {
 
     public JPanel mainPanel;
-
     public JPanel sudokuBoard;
 
     public JPanel buttons;
     public JButton goBackSolver;
 
     JPanel grid = new JPanel();
-    
+
 
     public JPanel getBoard(){
-        /*
-        mainPanel = new JPanel();
-
-        GridLayout but = new GridLayout(3,1);
-        mainPanel.setLayout(but);
-        mainPanel.setVisible(true);
-
-        grid.setSize(600,500);
-        grid.setBackground(Color.WHITE);
-        grid.setVisible(true);
-
-        mainPanel.add(grid);
-        grid.add(sudokuBoard);
-
-         */
-
         this.buildSudokuField();
         this.sudokuBoard.setBackground( Color.PINK);
         return this.sudokuBoard;
@@ -117,17 +101,4 @@ public class Sudoku_solver {
         }
         return field;
     }
-
-    /*
-    public JPanel getButtons(){
-
-        goBackSolver = new JButton();
-        buttons.add(goBackSolver);
-
-        return this.buttons;
-    }
-
-     */
 }
-
-

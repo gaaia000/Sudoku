@@ -10,12 +10,12 @@ public class Sudoku_main {
         JFrame app = new JFrame();
          */
 
+
         //Sudoku_MainWindow
         new Sudoku_MainWindow();
 
         //Sudoku_Cards
-        new Sudoku_Cards();
-
+        //new Sudoku_Cards();
 
         //Sudoku_Board
         /*

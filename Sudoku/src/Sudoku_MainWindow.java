@@ -1,9 +1,13 @@
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.concurrent.BlockingQueue;
 
-public class Sudoku_MainWindow extends Sudoku_solver {
+public class Sudoku_MainWindow extends Sudoku_solver{
+
+    public JFrame app;
 
     JFrame mainWindow = new JFrame("SUDOKU +");
 
@@ -11,8 +15,10 @@ public class Sudoku_MainWindow extends Sudoku_solver {
 
     JPanel frame = new JPanel();
     JPanel solver = new JPanel();
-    public JButton solve;
-    public JButton play;
+
+    JButton solve;
+    JButton play;
+
     CardLayout cl = new CardLayout();
 
     public Sudoku_MainWindow(){
@@ -52,8 +58,8 @@ public class Sudoku_MainWindow extends Sudoku_solver {
         buttonBox.setBackground(Color.PINK);
 
         //-> buttons
-        JButton solve = new JButton("Sudoku solver");
-        JButton play = new JButton("Try yourself");
+        solve = new JButton("Sudoku solver");
+        play = new JButton("Try yourself");
 
         //buttons customization
         solve.setPreferredSize(new Dimension(150,50));
@@ -94,10 +100,39 @@ public class Sudoku_MainWindow extends Sudoku_solver {
         buttonBox.add(b1);
         buttonBox.setVisible(true);
 
-        /*ACTION LISTENER
-        solve.addActionListener(this);
-        play.addActionListener(this);
-         */
+        //ACTION LISTENER
+        solve.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainWindow.dispose();
+
+                app = new JFrame();
+                Sudoku_solver ss = new Sudoku_solver();
+                GridLayout glBoard = new GridLayout(2,2);
+                app.setLayout(glBoard);
+                app.setResizable(false);
+                app.getContentPane().setBackground(Color.PINK);
+                app.setSize(600, 600);
+                app.add(ss.getBoard());
+                app.setVisible(true);
+
+            }
+        });
+
+
+        play.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainWindow.dispose();
+
+                new Sudoku_Cards();
+                //frame.setVisible(true);
+
+            }
+        });
+
+
+
 
         //ADDING
         panelCont.add(frame, "1");
@@ -122,6 +157,17 @@ public class Sudoku_MainWindow extends Sudoku_solver {
 
 
 
+
     }
+    /*
+    private void solveActionPerformed(ActionEvent evt){
+        mainWindow.dispose();
+        Sudoku_MainWindow mw = new Sudoku_MainWindow();
+
+    }
+
+     */
+
+
 
 }
