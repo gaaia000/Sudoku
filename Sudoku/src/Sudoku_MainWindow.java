@@ -11,14 +11,18 @@ public class Sudoku_MainWindow extends Sudoku_solver{
 
     JFrame mainWindow = new JFrame("SUDOKU +");
 
+    //parent
     JPanel panelCont = new JPanel();
 
+    //children
     JPanel frame = new JPanel();
     JPanel solver = new JPanel();
 
+    //components
     JButton solve;
     JButton play;
 
+    //card layout
     CardLayout cl = new CardLayout();
 
     public Sudoku_MainWindow(){
@@ -126,11 +130,9 @@ public class Sudoku_MainWindow extends Sudoku_solver{
                 mainWindow.dispose();
 
                 new Sudoku_Cards();
-                //frame.setVisible(true);
 
             }
         });
-
 
 
 
@@ -138,9 +140,6 @@ public class Sudoku_MainWindow extends Sudoku_solver{
         panelCont.add(frame, "1");
         panelCont.add(solver, "2");
         cl.show(panelCont, "1");
-
-
-
 
 
         //frame
@@ -156,18 +155,7 @@ public class Sudoku_MainWindow extends Sudoku_solver{
         mainWindow.setVisible(true);
 
 
-
-
     }
-    /*
-    private void solveActionPerformed(ActionEvent evt){
-        mainWindow.dispose();
-        Sudoku_MainWindow mw = new Sudoku_MainWindow();
-
-    }
-
-     */
-
 
 
 }

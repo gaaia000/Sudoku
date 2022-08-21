@@ -5,15 +5,11 @@ import java.awt.*;
 public class Sudoku_main {
     public static void main(String[] args) {
 
-        //FRAMES
-        /*
-        JFrame app = new JFrame();
-         */
-
-
         //Sudoku_MainWindow
         new Sudoku_MainWindow();
 
+
+        //TODO to se lahko zbriše verjetno ne? (kar je dol od tega stavka)
         //Sudoku_Cards
         //new Sudoku_Cards();
 

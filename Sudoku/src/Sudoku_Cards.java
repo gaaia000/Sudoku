@@ -12,16 +12,33 @@ public class Sudoku_Cards {
 
     JFrame frame = new JFrame("Try yourself");
 
+    //parent
     JPanel panelCont = new JPanel();
+    //children
     JPanel panelUser = new JPanel();
+    //->
     JPanel signUp = new JPanel();
+    //->
     JPanel login = new JPanel();
-
+    //-->
     JPanel settings = new JPanel();
+    //--->
     JPanel play = new JPanel();
+
+    //GRID/CARD LAYOUTS
+    //-> panelCont  panel layout
     CardLayout cl = Builder.getCardLayout();
+
+    //-> signup panel layout
     GridLayout gl1 = new GridLayout(3, 1);
+
+    //-> login panel layout
     GridLayout gl2 = new GridLayout(3, 1);
+
+    //-> user menu panel layout
+    GridLayout menu = new GridLayout(3, 1);
+    //-> settings panel layout
+    GridLayout gridLayoutSettings = new GridLayout(3,1);
 
     public JLabel usernameLabel1;
     public JTextField userText1;
@@ -47,24 +64,37 @@ public class Sudoku_Cards {
         JButton goBackSettings = Builder.createButton("Back");
         JButton goBackPlay = Builder.createButton("Back");
 
+        //buttons for selecting a difficulty
+        JButton easy = Builder.createButton("EASY");
+        JButton medium = Builder.createButton("MEDIUM");
+        JButton hard = Builder.createButton("HARD");
+
         error = new JLabel("");
 
         //LAYOUTS
         panelCont.setLayout(cl);
+
         signUp.setLayout(gl1);
         gl1.setVgap(20);
         gl1.setHgap(20);
+
         login.setLayout(gl2);
         gl2.setVgap(20);
         gl2.setHgap(20);
 
-        //MENU - USER
-        panelUser.setBackground(Color.PINK);
+        settings.setLayout(gridLayoutSettings);
+        gridLayoutSettings.setVgap(20);
+        gridLayoutSettings.setHgap(20);
 
-        GridLayout menu = new GridLayout(3, 1);
+
         panelUser.setLayout(menu);
         menu.setVgap(20);
         menu.setHgap(20);
+
+        //MENU - USER
+        panelUser.setBackground(Color.PINK);
+
+
 
         JLabel empty = new JLabel();
         panelUser.add(empty);
@@ -351,7 +381,42 @@ public class Sudoku_Cards {
 
         //- -> settings
         settings.setBackground(Color.PINK);
-        settings.add(goBackSettings);
+
+        JLabel empty2 = new JLabel(" ");
+        settings.add(empty2);
+
+        GridLayout gridLayoutSettingsButtons = new GridLayout(1,3);
+        JPanel SettingsMiddlePanel = new JPanel();
+        SettingsMiddlePanel.setLayout(gridLayoutSettingsButtons);
+        SettingsMiddlePanel.setBackground(Color.PINK);
+
+        //-> three smaller panels for each of the components
+        JPanel SettingsPanelButton_easy = new JPanel();
+        SettingsPanelButton_easy.setBackground(Color.PINK);
+        SettingsPanelButton_easy.add(easy);
+
+        JPanel SettingsPanelButton_medium = new JPanel();
+        SettingsPanelButton_medium.setBackground(Color.PINK);
+        SettingsPanelButton_medium.add(medium);
+
+        JPanel SettingsPanelButton_hard = new JPanel();
+        SettingsPanelButton_hard.setBackground(Color.PINK);
+        SettingsPanelButton_hard.add(hard);
+
+        //-> panel last row
+        JPanel SettingsLastRowPanel = new JPanel();
+        SettingsLastRowPanel.setBackground(Color.PINK);
+        SettingsLastRowPanel.add(goBackSettings);
+
+        //ADDING in settings
+        SettingsMiddlePanel.add(SettingsPanelButton_easy);
+        SettingsMiddlePanel.add(SettingsPanelButton_medium);
+        SettingsMiddlePanel.add(SettingsPanelButton_hard);
+
+        settings.add(SettingsMiddlePanel);
+        settings.add(SettingsLastRowPanel);
+
+        //todo : setVisible (add if it is not working anymore)
 
         //- - -> play
         play.setBackground(Color.BLACK);
@@ -431,7 +496,11 @@ public class Sudoku_Cards {
             }
         });
 
-        //TODO popravi error, zbriši text
+        //TODO namesto da ti vrže uni error oz sys.out... lahko samo zbriše kar je že napisano (ko je "napačen login")
+        // in bom potem jst samo povedala na zagovoru da to pomeni da je narobe ime in geslo oz da se moreš prijavit
+        // oziroma pač nrdis tako kot je narjeno v prvem if stavku (če pusti prazno...)
+        // če se ti to zdi lažje seveda :)
+
         loginPlay.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

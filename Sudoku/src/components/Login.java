@@ -20,6 +20,7 @@ public class Login implements ComponentInterface {
         return component;
     }
 
+    //TODO: popravi da dela + dodaj še za: signup, settings, user
     public void setup() {
         // Settings
         GridLayout layout = new GridLayout(3, 1);

@@ -30,6 +30,7 @@ public class Builder{
         cardLayout =  new CardLayout();
     }
 
+    //TODO: kaj to dela pravilno?
     public static CardLayout getCardLayout(){
         if(cardLayout == null){
             createCardLayout();
